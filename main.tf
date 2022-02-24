@@ -54,7 +54,7 @@ provider "oci" {
   region = module.configuration.tenancy.region.key
 }
 module "resident" {
-  source = "github.com/ocilabs/resident"
+  source = "github.com/oracle-devrel/terraform-oci-ocloud-asset-resident"
   depends_on = [module.configuration]
   providers = {oci = oci.home}
   tenancy   = module.configuration.tenancy
@@ -75,7 +75,7 @@ output "resident" {
 
 // --- network configuration --- //
 module "network" {
-  source = "github.com/ocilabs/network"
+  source = "github.com/oracle-devrel/terraform-oci-ocloud-asset-network"
   depends_on = [module.configuration, module.resident]
   providers = {oci = oci.service}
   for_each  = {for segment in local.segments : segment.name => segment}
@@ -98,39 +98,3 @@ output "network" {
     }
 }
 // --- network configuration --- //
-
-
-/*/ --- host configuration --- //
-module "host" {
-  source     = "./assets/host/"
-  depends_on = [
-    module.configuration, 
-    module.resident, 
-    module.network
-  ]
-  providers  = { oci = oci.home }
-  tenancy   = module.configuration.tenancy
-  service   = module.configuration.service
-  resident  = module.configuration.resident
-  input     = {
-    network = module.network["core"]
-    name    = "operator"
-    shape   = "small"
-    image   = "linux"
-    disk    = "san"
-    nic     = "private"
-  }
-  ssh = {
-    # Determine whether a ssh session via bastion service will be started
-    enable          = false
-    type            = "MANAGED_SSH" # Alternatively "PORT_FORWARDING"
-    ttl_in_seconds  = 1800
-    target_port     = 22
-  }
-}
-output "host" {
-  value = {
-    for resource, parameter in module.host : resource => parameter
-  }
-}
-// --- host configuration --- /*/
