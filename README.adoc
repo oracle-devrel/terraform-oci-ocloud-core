@@ -23,7 +23,7 @@ Provisioning templates extract configuration parameter from the deployment code 
 
 [#img-architecture] 
 .Code Delivery
-image::https://raw.githubusercontent.com/ocilabs/images/main/code_delivery.drawio.png[Code Delivery]
+image::/docs/images/code_delivery.drawio.png[Code Delivery]
 
 The framework aims to provide more flexibility for infrastructure operators. Storing the code in a git repository and connecting the Resource Manager (ORM) with the source allows administrators to implement a link:https://en.wikipedia.org/wiki/Continuous_delivery[continuous delivery] process. Operation engineers "borrow" tools and workflows, invented for software developer. But instead of using these tools for application code, operators leverage them for infrastructure automation. Git becomes the single source of truth for both, application and infrastructure code. A service template describes the desired state for the assets and is versioned in the repository. Operators introduce self-service following in three major steps: 
 
@@ -83,7 +83,7 @@ The resources manager comes with a number of link:https://docs.oracle.com/en-us/
 
 [#img-configuration] 
 .Service Configuration 
-image::https://raw.githubusercontent.com/ocilabs/images/main/service_configuration.drawio.png[Service Configuration]
+image::/docs/images/service_configuration.drawio.png[Service Configuration]
 
 An optional operator node is employed to execute cron jobs and runbooks that help to manage service availability, schedule resource consumption and fix problems for container workloads and functions. In addition service configurations enable service manager to adopt Oracle Cloud Services as alternative to shared intranet services and to benefit from link:https://github.com/oracle-quickstart[blueprints] for services like utility computing, web- and mobile backbone services. 
 
