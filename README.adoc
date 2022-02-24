@@ -87,7 +87,7 @@ image::/docs/images/service_configuration.drawio.png[Service Configuration]
 
 An optional operator node is employed to execute cron jobs and runbooks that help to manage service availability, schedule resource consumption and fix problems for container workloads and functions. In addition service configurations enable service manager to adopt Oracle Cloud Services as alternative to shared intranet services and to benefit from link:https://github.com/oracle-quickstart[blueprints] for services like utility computing, web- and mobile backbone services. 
 
-==== Prerequisites
+=== Prerequisites
 Code is written in HashiCorp Configuration Language (HCL), includes data stored in JSON format and cloud init scripts. The OCI Resource Manager executes Terraform and deploys Service Assets into a tenancy. Engineers should familerize themselfes with the following topics:
 
 * link:https://www.oracle.com/cloud/free/[Oracle Cloud Infrastructure (OCI) Account] 
