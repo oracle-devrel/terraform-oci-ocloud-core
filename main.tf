@@ -136,17 +136,15 @@ module "database" {
   database   = module.configuration.databases.autonomous
   input = {
     create   = var.create_adb
-    password = var.create_wallet ? "wallet" : "random"
   }
   assets = {
     resident   = module.resident
-    encryption = module.encryption
+    encryption = module.encryption["default"]
   }
 }
 output "database" {
-  value = {
-    for resource, parameter in module.database : resource => parameter
-  }
+  value = {for resource, parameter in module.database : resource => parameter}
+  sensitive = true
 }
 // --- database creation --- //
 
